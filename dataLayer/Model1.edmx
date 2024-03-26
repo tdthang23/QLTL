@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLTLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_CHAMCONG">
+          <Key>
+            <PropertyRef Name="MABCC" />
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MABCC" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MANV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SONC" Type="int" />
+          <Property Name="TANGCA" Type="int" />
+          <Property Name="MUON" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_CHUCVU">
+          <Key>
+            <PropertyRef Name="MACV" />
+          </Key>
+          <Property Name="MACV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TENCV" Type="nvarchar" MaxLength="100" />
+          <Property Name="HSL" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="tb_LUONG">
+          <Key>
+            <PropertyRef Name="MABL" />
+          </Key>
+          <Property Name="MABL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MABCC" Type="varchar" MaxLength="10" />
+          <Property Name="MANV" Type="varchar" MaxLength="10" />
+          <Property Name="BHXH" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="BHYT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="THUETNCN" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="THUCLANH" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="tb_NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="HOTEN" Type="nvarchar" MaxLength="30" />
+          <Property Name="NGAYSINH" Type="date" />
+          <Property Name="GT" Type="nvarchar" MaxLength="3" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="200" />
+          <Property Name="SDT" Type="varchar" MaxLength="11" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="NGAYVAOLAM" Type="date" />
+          <Property Name="MAPB" Type="varchar" MaxLength="10" />
+          <Property Name="MACV" Type="varchar" MaxLength="10" />
+          <Property Name="LUONGCB" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="tb_PHONGBAN">
+          <Key>
+            <PropertyRef Name="MAPB" />
+          </Key>
+          <Property Name="MAPB" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TENPB" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__CHAMCONG__MANV__44FF419A">
+          <End Role="tb_NHANVIEN" Type="Self.tb_NHANVIEN" Multiplicity="1" />
+          <End Role="tb_CHAMCONG" Type="Self.tb_CHAMCONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="tb_CHAMCONG">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NHANVIEN__MACV__3C69FB99">
+          <End Role="tb_CHUCVU" Type="Self.tb_CHUCVU" Multiplicity="0..1" />
+          <End Role="tb_NHANVIEN" Type="Self.tb_NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_CHUCVU">
+              <PropertyRef Name="MACV" />
+            </Principal>
+            <Dependent Role="tb_NHANVIEN">
+              <PropertyRef Name="MACV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NHANVIEN__MAPB__3B75D760">
+          <End Role="tb_PHONGBAN" Type="Self.tb_PHONGBAN" Multiplicity="0..1" />
+          <End Role="tb_NHANVIEN" Type="Self.tb_NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_PHONGBAN">
+              <PropertyRef Name="MAPB" />
+            </Principal>
+            <Dependent Role="tb_NHANVIEN">
+              <PropertyRef Name="MAPB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_LUONG__628FA481">
+          <End Role="tb_CHAMCONG" Type="Self.tb_CHAMCONG" Multiplicity="0..1" />
+          <End Role="tb_LUONG" Type="Self.tb_LUONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_CHAMCONG">
+              <PropertyRef Name="MABCC" />
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="tb_LUONG">
+              <PropertyRef Name="MABCC" />
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLTLModelStoreContainer">
+          <EntitySet Name="tb_CHAMCONG" EntityType="Self.tb_CHAMCONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_CHUCVU" EntityType="Self.tb_CHUCVU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_LUONG" EntityType="Self.tb_LUONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_NHANVIEN" EntityType="Self.tb_NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_PHONGBAN" EntityType="Self.tb_PHONGBAN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CHAMCONG__MANV__44FF419A" Association="Self.FK__CHAMCONG__MANV__44FF419A">
+            <End Role="tb_NHANVIEN" EntitySet="tb_NHANVIEN" />
+            <End Role="tb_CHAMCONG" EntitySet="tb_CHAMCONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NHANVIEN__MACV__3C69FB99" Association="Self.FK__NHANVIEN__MACV__3C69FB99">
+            <End Role="tb_CHUCVU" EntitySet="tb_CHUCVU" />
+            <End Role="tb_NHANVIEN" EntitySet="tb_NHANVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NHANVIEN__MAPB__3B75D760" Association="Self.FK__NHANVIEN__MAPB__3B75D760">
+            <End Role="tb_PHONGBAN" EntitySet="tb_PHONGBAN" />
+            <End Role="tb_NHANVIEN" EntitySet="tb_NHANVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_LUONG__628FA481" Association="Self.FK__tb_LUONG__628FA481">
+            <End Role="tb_CHAMCONG" EntitySet="tb_CHAMCONG" />
+            <End Role="tb_LUONG" EntitySet="tb_LUONG" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLTLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_CHAMCONG">
+          <Key>
+            <PropertyRef Name="MABCC" />
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MABCC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MANV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SONC" Type="Int32" />
+          <Property Name="TANGCA" Type="Int32" />
+          <Property Name="MUON" Type="Int32" />
+          <NavigationProperty Name="tb_NHANVIEN" Relationship="Self.FK__CHAMCONG__MANV__44FF419A" FromRole="tb_CHAMCONG" ToRole="tb_NHANVIEN" />
+          <NavigationProperty Name="tb_LUONG" Relationship="Self.FK__LUONG__4D94879B" FromRole="tb_CHAMCONG" ToRole="tb_LUONG" />
+        </EntityType>
+        <EntityType Name="tb_CHUCVU">
+          <Key>
+            <PropertyRef Name="MACV" />
+          </Key>
+          <Property Name="MACV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENCV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_NHANVIEN" Relationship="Self.FK__NHANVIEN__MACV__3C69FB99" FromRole="tb_CHUCVU" ToRole="tb_NHANVIEN" />
+          <Property Name="HSL" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="tb_LUONG">
+          <Key>
+            <PropertyRef Name="MABL" />
+          </Key>
+          <Property Name="MABL" Type="Int32" Nullable="false" />
+          <Property Name="MABCC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MANV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BHXH" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="BHYT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="THUETNCN" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="tb_CHAMCONG" Relationship="Self.FK__LUONG__4D94879B" FromRole="tb_LUONG" ToRole="tb_CHAMCONG" />
+          <Property Name="THUCLANH" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="tb_NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HOTEN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+          <Property Name="GT" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYVAOLAM" Type="DateTime" Precision="0" />
+          <Property Name="MAPB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MACV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LUONGCB" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="tb_CHAMCONG" Relationship="Self.FK__CHAMCONG__MANV__44FF419A" FromRole="tb_NHANVIEN" ToRole="tb_CHAMCONG" />
+          <NavigationProperty Name="tb_CHUCVU" Relationship="Self.FK__NHANVIEN__MACV__3C69FB99" FromRole="tb_NHANVIEN" ToRole="tb_CHUCVU" />
+          <NavigationProperty Name="tb_PHONGBAN" Relationship="Self.FK__NHANVIEN__MAPB__3B75D760" FromRole="tb_NHANVIEN" ToRole="tb_PHONGBAN" />
+        </EntityType>
+        <EntityType Name="tb_PHONGBAN">
+          <Key>
+            <PropertyRef Name="MAPB" />
+          </Key>
+          <Property Name="MAPB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENPB" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_NHANVIEN" Relationship="Self.FK__NHANVIEN__MAPB__3B75D760" FromRole="tb_PHONGBAN" ToRole="tb_NHANVIEN" />
+        </EntityType>
+        <Association Name="FK__CHAMCONG__MANV__44FF419A">
+          <End Role="tb_NHANVIEN" Type="Self.tb_NHANVIEN" Multiplicity="1" />
+          <End Role="tb_CHAMCONG" Type="Self.tb_CHAMCONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="tb_CHAMCONG">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LUONG__4D94879B">
+          <End Role="tb_CHAMCONG" Type="Self.tb_CHAMCONG" Multiplicity="0..1" />
+          <End Role="tb_LUONG" Type="Self.tb_LUONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_CHAMCONG">
+              <PropertyRef Name="MABCC" />
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="tb_LUONG">
+              <PropertyRef Name="MABCC" />
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NHANVIEN__MACV__3C69FB99">
+          <End Role="tb_CHUCVU" Type="Self.tb_CHUCVU" Multiplicity="0..1" />
+          <End Role="tb_NHANVIEN" Type="Self.tb_NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_CHUCVU">
+              <PropertyRef Name="MACV" />
+            </Principal>
+            <Dependent Role="tb_NHANVIEN">
+              <PropertyRef Name="MACV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NHANVIEN__MAPB__3B75D760">
+          <End Role="tb_PHONGBAN" Type="Self.tb_PHONGBAN" Multiplicity="0..1" />
+          <End Role="tb_NHANVIEN" Type="Self.tb_NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_PHONGBAN">
+              <PropertyRef Name="MAPB" />
+            </Principal>
+            <Dependent Role="tb_NHANVIEN">
+              <PropertyRef Name="MAPB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLTLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_CHAMCONG" EntityType="Self.tb_CHAMCONG" />
+          <EntitySet Name="tb_CHUCVU" EntityType="Self.tb_CHUCVU" />
+          <EntitySet Name="tb_LUONG" EntityType="Self.tb_LUONG" />
+          <EntitySet Name="tb_NHANVIEN" EntityType="Self.tb_NHANVIEN" />
+          <EntitySet Name="tb_PHONGBAN" EntityType="Self.tb_PHONGBAN" />
+          <AssociationSet Name="FK__CHAMCONG__MANV__44FF419A" Association="Self.FK__CHAMCONG__MANV__44FF419A">
+            <End Role="tb_NHANVIEN" EntitySet="tb_NHANVIEN" />
+            <End Role="tb_CHAMCONG" EntitySet="tb_CHAMCONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LUONG__4D94879B" Association="Self.FK__LUONG__4D94879B">
+            <End Role="tb_CHAMCONG" EntitySet="tb_CHAMCONG" />
+            <End Role="tb_LUONG" EntitySet="tb_LUONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NHANVIEN__MACV__3C69FB99" Association="Self.FK__NHANVIEN__MACV__3C69FB99">
+            <End Role="tb_CHUCVU" EntitySet="tb_CHUCVU" />
+            <End Role="tb_NHANVIEN" EntitySet="tb_NHANVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NHANVIEN__MAPB__3B75D760" Association="Self.FK__NHANVIEN__MAPB__3B75D760">
+            <End Role="tb_PHONGBAN" EntitySet="tb_PHONGBAN" />
+            <End Role="tb_NHANVIEN" EntitySet="tb_NHANVIEN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLTLModelStoreContainer" CdmEntityContainer="QLTLEntities">
+          <EntitySetMapping Name="tb_CHAMCONG">
+            <EntityTypeMapping TypeName="QLTLModel.tb_CHAMCONG">
+              <MappingFragment StoreEntitySet="tb_CHAMCONG">
+                <ScalarProperty Name="MABCC" ColumnName="MABCC" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="SONC" ColumnName="SONC" />
+                <ScalarProperty Name="TANGCA" ColumnName="TANGCA" />
+                <ScalarProperty Name="MUON" ColumnName="MUON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_CHUCVU">
+            <EntityTypeMapping TypeName="QLTLModel.tb_CHUCVU">
+              <MappingFragment StoreEntitySet="tb_CHUCVU">
+                <ScalarProperty Name="HSL" ColumnName="HSL" />
+                <ScalarProperty Name="MACV" ColumnName="MACV" />
+                <ScalarProperty Name="TENCV" ColumnName="TENCV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_LUONG">
+            <EntityTypeMapping TypeName="QLTLModel.tb_LUONG">
+              <MappingFragment StoreEntitySet="tb_LUONG">
+                <ScalarProperty Name="THUCLANH" ColumnName="THUCLANH" />
+                <ScalarProperty Name="MABL" ColumnName="MABL" />
+                <ScalarProperty Name="MABCC" ColumnName="MABCC" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="BHXH" ColumnName="BHXH" />
+                <ScalarProperty Name="BHYT" ColumnName="BHYT" />
+                <ScalarProperty Name="THUETNCN" ColumnName="THUETNCN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_NHANVIEN">
+            <EntityTypeMapping TypeName="QLTLModel.tb_NHANVIEN">
+              <MappingFragment StoreEntitySet="tb_NHANVIEN">
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="GT" ColumnName="GT" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NGAYVAOLAM" ColumnName="NGAYVAOLAM" />
+                <ScalarProperty Name="MAPB" ColumnName="MAPB" />
+                <ScalarProperty Name="MACV" ColumnName="MACV" />
+                <ScalarProperty Name="LUONGCB" ColumnName="LUONGCB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_PHONGBAN">
+            <EntityTypeMapping TypeName="QLTLModel.tb_PHONGBAN">
+              <MappingFragment StoreEntitySet="tb_PHONGBAN">
+                <ScalarProperty Name="MAPB" ColumnName="MAPB" />
+                <ScalarProperty Name="TENPB" ColumnName="TENPB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
