@@ -51,6 +51,7 @@
             this.MABL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MANV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MABCC = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.HOTEN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BHYT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BHXH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.THUETNCN = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -269,6 +270,7 @@
             this.MABL,
             this.MANV,
             this.MABCC,
+            this.HOTEN,
             this.BHYT,
             this.BHXH,
             this.THUETNCN,
@@ -311,6 +313,19 @@
             this.MABCC.VisibleIndex = 1;
             this.MABCC.Width = 100;
             // 
+            // HOTEN
+            // 
+            this.HOTEN.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+            this.HOTEN.AppearanceHeader.Options.UseFont = true;
+            this.HOTEN.Caption = "Họ Tên";
+            this.HOTEN.FieldName = "HOTEN";
+            this.HOTEN.MaxWidth = 200;
+            this.HOTEN.MinWidth = 250;
+            this.HOTEN.Name = "HOTEN";
+            this.HOTEN.Visible = true;
+            this.HOTEN.VisibleIndex = 2;
+            this.HOTEN.Width = 250;
+            // 
             // BHYT
             // 
             this.BHYT.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
@@ -323,7 +338,7 @@
             this.BHYT.MinWidth = 200;
             this.BHYT.Name = "BHYT";
             this.BHYT.Visible = true;
-            this.BHYT.VisibleIndex = 2;
+            this.BHYT.VisibleIndex = 3;
             this.BHYT.Width = 200;
             // 
             // BHXH
@@ -338,7 +353,7 @@
             this.BHXH.MinWidth = 200;
             this.BHXH.Name = "BHXH";
             this.BHXH.Visible = true;
-            this.BHXH.VisibleIndex = 3;
+            this.BHXH.VisibleIndex = 4;
             this.BHXH.Width = 200;
             // 
             // THUETNCN
@@ -353,7 +368,7 @@
             this.THUETNCN.MinWidth = 200;
             this.THUETNCN.Name = "THUETNCN";
             this.THUETNCN.Visible = true;
-            this.THUETNCN.VisibleIndex = 4;
+            this.THUETNCN.VisibleIndex = 5;
             this.THUETNCN.Width = 200;
             // 
             // THUCLANH
@@ -368,7 +383,7 @@
             this.THUCLANH.MinWidth = 300;
             this.THUCLANH.Name = "THUCLANH";
             this.THUCLANH.Visible = true;
-            this.THUCLANH.VisibleIndex = 5;
+            this.THUCLANH.VisibleIndex = 6;
             this.THUCLANH.Width = 300;
             // 
             // frmBangLuong
@@ -425,5 +440,6 @@
         private System.Windows.Forms.ComboBox cboNam;
         private System.Windows.Forms.ComboBox cboThang;
         private DevExpress.XtraGrid.Columns.GridColumn MABL;
+        private DevExpress.XtraGrid.Columns.GridColumn HOTEN;
     }
 }
