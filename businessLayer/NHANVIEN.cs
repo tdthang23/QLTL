@@ -90,13 +90,13 @@ namespace businessLayer
         {
             try
             {
-                var _nv = db.tb_NHANVIEN.FirstOrDefault(x => x.MANV == id);
+                var _nv = db.tb_NHANVIEN.FirstOrDefault(x => string.Compare(x.MANV, id, true)==0);
                 db.tb_NHANVIEN.Remove(_nv); db.SaveChanges();
-            }
+        }
             catch (Exception ex)
             {
                 throw new Exception("Lỗi: " + ex.Message);
-            }
-        }
+    }
+}
     }
 }

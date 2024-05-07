@@ -191,11 +191,11 @@
             // 
             this.cboNam.FormattingEnabled = true;
             this.cboNam.Items.AddRange(new object[] {
+            "2020",
             "2021",
             "2022",
             "2023",
-            "2024",
-            "2025"});
+            "2024"});
             this.cboNam.Location = new System.Drawing.Point(428, 22);
             this.cboNam.Name = "cboNam";
             this.cboNam.Size = new System.Drawing.Size(134, 24);
